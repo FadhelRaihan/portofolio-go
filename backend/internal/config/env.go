@@ -20,11 +20,11 @@ type Env struct {
 
 func LoadEnv() Env {
 	return Env{
-		DBHost: getEnv("DB_HOST", "localhost"),
-		DBPort: getEnv("DB_PORT", "5433"),
-		DBUser: getEnv("DB_USER", "app-user"),
-		DBPass: getEnv("DB_PASS", "securedpass!"),
-		DBName: getEnv("DB_NAME", "docker-learning-db"),
+		DBHost: getEnv("DB_HOST", "aws-1-ap-south-1.pooler.supabase.com"),
+		DBPort: getEnv("DB_PORT", "5432"),
+		DBUser: getEnv("DB_USER", "postgres.eeqdozgfhvhtfxdlqdyb"),
+		DBPass: getEnv("DB_PASS", "Padhel29!#."),
+		DBName: getEnv("DB_NAME", "postgres"),
 
 		AppPort:    getEnv("APP_PORT", "3000"),
 		JWTSecret:  getEnv("JWT_SECRET", "super-secret-key"),

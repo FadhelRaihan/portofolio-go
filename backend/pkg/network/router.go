@@ -3,16 +3,18 @@ package network
 import (
 	"backend/internal/modules/auth"
 	githubmodule "backend/internal/modules/github"
+	profileModule "backend/internal/modules/profile"
 	"backend/internal/modules/user"
 
 	"github.com/gofiber/fiber/v2"
 )
 
 type RouterDeps struct {
-	AuthController   *auth.Controller
-	UserController   *user.Controller
-	AuthMiddleware   fiber.Handler
-	GitHubController *githubmodule.Controller
+	AuthController    *auth.Controller
+	UserController    *user.Controller
+	AuthMiddleware    fiber.Handler
+	GitHubController  *githubmodule.Controller
+	ProfileController *profileModule.Controller
 }
 
 func RegisterRoutes(app *fiber.App, deps RouterDeps) {
@@ -28,10 +30,13 @@ func RegisterRoutes(app *fiber.App, deps RouterDeps) {
 	// Login for Dashboard
 	app.Post("/api/login", deps.AuthController.Login)
 
-	// GitHub routes for Portofolio
+	// GitHub routes
 	app.Get("/api/github/me/repos", deps.GitHubController.GetMyReposHandler)
 	app.Get("/api/github/:username/repos", deps.GitHubController.ListPublicByUserHandler)
 	app.Get("/api/github/:username/contributions", deps.GitHubController.ContributionsHandler)
+
+	// Profile routes
+	app.Get("/api/profile", deps.ProfileController.GetPublicProfile)
 
 	// =========================
 	// Private API (dashboard only)
@@ -40,9 +45,15 @@ func RegisterRoutes(app *fiber.App, deps RouterDeps) {
 	// All routes under /api require AuthMiddleware (JWT)
 	api := app.Group("/api", deps.AuthMiddleware)
 
+	// Protected user
 	api.Get("/users", deps.UserController.ListUsers)
 	api.Get("/users/:id", deps.UserController.GetUser)
 	api.Post("/users", deps.UserController.CreateUser)
 	api.Patch("/users/:id", deps.UserController.PatchUser)
 	api.Delete("/users/:id", deps.UserController.DeleteUser)
+
+	// Protected profile
+	api.Post("/profiles", deps.ProfileController.CreateProfile)
+	api.Patch("/profiles/:id", deps.ProfileController.UpdateProfile)
+	api.Delete("/profiles/:id", deps.ProfileController.DeleteProfile)
 }
