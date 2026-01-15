@@ -3,10 +3,10 @@ version: "3.9"
 services:
   db:
     image: postgres:16
-    container_name: auth-db
+    container_name: app-db
     environment:
-      POSTGRES_USER: authuser
-      POSTGRES_PASSWORD: auth123
+      POSTGRES_USER: app-user
+      POSTGRES_PASSWORD: securedpass!
       POSTGRES_DB: docker-learning-db
     ports:
       - "5433:5432"
