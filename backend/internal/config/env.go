@@ -31,7 +31,7 @@ func LoadEnv() Env {
 		JWTIssuer:  getEnv("JWT_ISSUER", "auth-app"),
 		SwaggerURL: getEnv("SWAGGER_URL", "/swagger/*"),
 
-		GitHubToken: getEnv("GITHUB_TOKEN", "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"),
+		GitHubToken: getEnv("GITHUB_TOKEN", "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"),
 		GitHubUsername: getEnv("GITHUB_USERNAME", "FadhelRaihan"),
 	}
 }

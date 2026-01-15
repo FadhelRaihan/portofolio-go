@@ -4,8 +4,11 @@ backend/tmp
 backend/internal/config/env.go
 
 # Node / React
-frontend/node_modules
-frontend/dist
+frontend-dashboard/node_modules
+frontend-dashboard/dist
+
+frontend-portofolio/node_modules
+frontend-portofolio/dist
 
 # Docker
 db-data
@@ -15,3 +18,4 @@ db-data
 .vscode
 .idea
 .DS_Store
+backend/internal/config/env.go

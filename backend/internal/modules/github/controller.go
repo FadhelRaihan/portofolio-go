@@ -4,6 +4,7 @@ import (
 	"context"
 	"strconv"
 	"time"
+	"log"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -34,6 +35,7 @@ func (c *Controller) GetMyReposHandler(ctx *fiber.Ctx) error {
 
 	repos, err := c.service.ListMyRepos(context.Background(), visibility)
 	if err != nil {
+		log.Println("ListMyRepos error:", err)
 		return ctx.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": "failed to fetch repos",
 		})
