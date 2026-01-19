@@ -14,8 +14,11 @@ type Env struct {
 	JWTIssuer  string
 	SwaggerURL string
 
-	GitHubToken	string
-	GitHubUsername	string
+	GitHubToken    string
+	GitHubUsername string
+
+	SupabaseURL string
+	SupabaseKey string
 }
 
 func LoadEnv() Env {
@@ -31,8 +34,11 @@ func LoadEnv() Env {
 		JWTIssuer:  getEnv("JWT_ISSUER", "auth-app"),
 		SwaggerURL: getEnv("SWAGGER_URL", "/swagger/*"),
 
-		GitHubToken: getEnv("GITHUB_TOKEN", "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"),
+		GitHubToken:    getEnv("GITHUB_TOKEN", "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"),
 		GitHubUsername: getEnv("GITHUB_USERNAME", "FadhelRaihan"),
+
+		SupabaseURL:    getEnv("SUPABASE_URL", "https://eeqdozgfhvhtfxdlqdyb.supabase.co"),
+		SupabaseKey:    getEnv("SUPABASE_KEY", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVlcWRvemdmaHZodGZ4ZGxxZHliIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2ODQ4MjM5NywiZXhwIjoyMDg0MDU4Mzk3fQ.TMiXws0c1KgmGuy6IdbLM7odzrSyHMoizkL7lMnxWZQ"),
 	}
 }
 
